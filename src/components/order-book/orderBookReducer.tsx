@@ -1,4 +1,5 @@
 import { Reducer } from "redux"
+import { AVAILABLE_PAIRS } from "../../constants/constants"
 import { OrderBookActionTypes } from "../../enums/OrderBook"
 import { IOrderBookApiData } from "../../interfaces/OrderBook"
 
@@ -11,7 +12,7 @@ export interface OrderBookAction {
 export interface IOrderBookState {
     connected: boolean
     paused: boolean
-    selectedPair: string
+    selectedPair: typeof AVAILABLE_PAIRS[number]
     asks: string[]
     bids: string[]
     socket?: WebSocket

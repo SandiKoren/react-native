@@ -8,9 +8,10 @@ import {
     socketMessage,
 } from "../components/order-book/OrderBookActions"
 import { OrderBookAction } from "../components/order-book/orderBookReducer"
+import { AVAILABLE_PAIRS } from "../constants/constants"
 import { SocketStateTypes } from "../interfaces/OrderBook"
 
-export const initializeOrderBookSocket = (url: string, pair: string) => {
+export const initializeOrderBookSocket = (url: string, pair: typeof AVAILABLE_PAIRS[number]) => {
     return (dispatch: Dispatch<OrderBookAction>) => {
         const socket = new WebSocket(url)
         dispatch(socketConnectionInit(socket))
@@ -38,7 +39,7 @@ export const toggleSocketState = () => {
         dispatch(socketConnectionToggle())
     }
 }
-export const socketSend = (socket: WebSocket, sub: SocketStateTypes, pair: string) => {
+export const socketSend = (socket: WebSocket, sub: SocketStateTypes, pair: typeof AVAILABLE_PAIRS[number]) => {
     socket.send(
         JSON.stringify({
             event: `bts:${sub}`,
