@@ -54,12 +54,12 @@ export const orderBookReducer: Reducer<IOrderBookState, OrderBookAction> = (stat
 
             if (asks) {
                 asks.filter((ask) => {
-                    if (parseFloat(ask[1]) !== 0.0) filteredAsks.unshift(ask)
+                    if (parseFloat(ask[1]) !== 0.0) filteredAsks.push(ask)
                 })
             }
             if (bids) {
                 bids.filter((bid) => {
-                    if (parseFloat(bid[1]) !== 0.0) filteredBids.unshift(bid)
+                    if (parseFloat(bid[1]) !== 0.0) filteredBids.push(bid)
                 })
             }
             return {
