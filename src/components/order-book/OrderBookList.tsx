@@ -29,7 +29,11 @@ export const OrderBookList = () => {
 
     const asksData = useMemo(() => {
         return {
-            labels: asks.map((ask) => ask[0].substring(0, 5)),
+            labels: asks
+                .map((ask) => ask[0].substring(0, 5))
+                .sort((a, b) => {
+                    return +a - +b
+                }),
             datasets: [
                 {
                     data: asks.map((ask) => +ask[1].substring(0, 5)),
@@ -40,7 +44,11 @@ export const OrderBookList = () => {
 
     const bidsData = useMemo(() => {
         return {
-            labels: bids.map((bid) => bid[0].substring(0, 5)),
+            labels: bids
+                .map((bid) => bid[0].substring(0, 5))
+                .sort((a, b) => {
+                    return +a - +b
+                }),
             datasets: [
                 {
                     data: bids.map((bid) => +bid[1].substring(0, 5)),
