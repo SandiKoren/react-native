@@ -18,7 +18,7 @@ export const OrderBookList = () => {
         return () => {
             if (socket) socket.close()
         }
-    }, [dispatch])
+    }, [dispatch, socket])
 
     const togglePause = () => {
         dispatch(toggleSocketState())
