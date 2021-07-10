@@ -32,11 +32,6 @@ export const socketConnectionToggle = () => {
         type: OrderBookActionTypes.SocketConnectionPause,
     }
 }
-export const socketConnectionClose = () => {
-    return {
-        type: OrderBookActionTypes.SocketConnectionPause,
-    }
-}
 
 export const socketMessage = (data: IOrderBookApiData): OrderBookAction => {
     return {
