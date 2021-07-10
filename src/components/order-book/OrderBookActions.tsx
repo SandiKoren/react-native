@@ -1,3 +1,4 @@
+import { Dispatch } from "redux"
 import { OrderBookActionTypes } from "../../enums/OrderBook"
 import { IOrderBookApiData } from "../../interfaces/OrderBook"
 import { OrderBookAction } from "./orderBookReducer"

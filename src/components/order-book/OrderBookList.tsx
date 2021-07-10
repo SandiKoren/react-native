@@ -5,7 +5,8 @@ import React, { useEffect } from "react"
 import { ActivityIndicator, Dimensions, StyleSheet, Text, View } from "react-native"
 import { useDispatch, useSelector } from "react-redux"
 import { ApplicationState } from "../../../rootReducer"
-import { initializeOrderBookSocket, socketSend, toggleSocketState } from "../../api/orderBookApi"
+import { initializeOrderBookSocket, socketSend } from "../../api/orderBookApi"
+import { socketConnectionToggle } from "./OrderBookActions"
 import { OrderBookChart } from "./OrderBookChart"
 
 export const OrderBookList = () => {
@@ -21,7 +22,7 @@ export const OrderBookList = () => {
     }, [dispatch])
 
     const togglePause = () => {
-        dispatch(toggleSocketState())
+        dispatch(socketConnectionToggle())
 
         if (!socket) return
         paused ? socketSend(socket, "subscribe", selectedPair) : socketSend(socket, "unsubscribe", selectedPair)

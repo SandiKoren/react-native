@@ -1,8 +1,7 @@
-import { Dispatch } from "react"
+import { Dispatch } from "redux"
 import {
     socketConnectionInit,
     socketConnectionClosed,
-    socketConnectionToggle,
     socketConnectionSuccess,
     socketConnectionError,
     socketMessage,
@@ -32,11 +31,6 @@ export const initializeOrderBookSocket = (url: string, pair: typeof AVAILABLE_PA
         socket.onclose = () => {
             dispatch(socketConnectionClosed())
         }
-    }
-}
-export const toggleSocketState = () => {
-    return (dispatch: Dispatch<OrderBookAction>) => {
-        dispatch(socketConnectionToggle())
     }
 }
 export const socketSend = (socket: WebSocket, sub: SocketStateTypes, pair: typeof AVAILABLE_PAIRS[number]) => {
