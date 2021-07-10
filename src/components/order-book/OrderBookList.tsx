@@ -36,16 +36,10 @@ export const OrderBookList = () => {
             ) : (
                 <View>
                     <View>
-                        <View style={styles.headerActions}>
+                        <View style={styles.header}>
                             {timestamp ? <Text style={styles.timeText}>{moment.unix(parseInt(timestamp, 10)).format("HH:mm:ss")}</Text> : <View />}
                             <Text onPress={togglePause}>
-                                <View
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "row",
-                                        alignItems: "center",
-                                    }}
-                                >
+                                <View style={styles.headerActions}>
                                     {paused && (
                                         <>
                                             <FontAwesomeIcon icon={faUndo} style={styles.iconStyle} />
@@ -67,7 +61,12 @@ export const OrderBookList = () => {
 }
 
 const styles = StyleSheet.create({
-    headerActions: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: 10, alignItems: "center" },
+    header: { display: "flex", flexDirection: "row", justifyContent: "space-between", padding: 10, alignItems: "center" },
+    headerActions: {
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
     timeText: { marginLeft: 15, fontSize: 24 },
     container: {
         flex: 1,
