@@ -16,7 +16,7 @@ export const initializeOrderBookSocket = (url: string, pair: typeof AVAILABLE_PA
         dispatch(socketConnectionInit(socket))
 
         socket.onopen = () => {
-            socketSend(socket, "subscribe", pair)
+            socketSend({ socket, pair, sub: "subscribe" })
             dispatch(socketConnectionSuccess())
         }
 
@@ -33,12 +33,12 @@ export const initializeOrderBookSocket = (url: string, pair: typeof AVAILABLE_PA
         }
     }
 }
-export const socketSend = (socket: WebSocket, sub: SocketStateTypes, pair: typeof AVAILABLE_PAIRS[number]) => {
-    socket.send(
+export const socketSend = ({ ...options }: { socket: WebSocket; sub: SocketStateTypes; pair: typeof AVAILABLE_PAIRS[number] }) => {
+    options.socket.send(
         JSON.stringify({
-            event: `bts:${sub}`,
+            event: `bts:${options.sub}`,
             data: {
-                channel: `diff_order_book_${pair}`,
+                channel: `diff_order_book_${options.pair}`,
             },
         }),
     )

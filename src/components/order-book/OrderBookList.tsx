@@ -25,7 +25,7 @@ export const OrderBookList = () => {
         dispatch(socketConnectionToggle())
 
         if (!socket) return
-        paused ? socketSend(socket, "subscribe", selectedPair) : socketSend(socket, "unsubscribe", selectedPair)
+        socketSend({ socket, pair: selectedPair, sub: paused ? "subscribe" : "unsubscribe" })
     }
 
     return (
